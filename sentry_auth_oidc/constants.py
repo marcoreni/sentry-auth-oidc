@@ -10,9 +10,13 @@ CLIENT_ID = getattr(settings, 'OIDC_CLIENT_ID', None)
 CLIENT_SECRET = getattr(settings, 'OIDC_CLIENT_SECRET', None)
 USERINFO_ENDPOINT = getattr(settings, 'OIDC_USERINFO_ENDPOINT', None)
 SCOPE = getattr(settings, 'OIDC_SCOPE', 'openid email')
+DOMAIN_BLACKLIST = frozenset(getattr(settings, 'OIDC_DOMAIN_BLACKLIST', None) or [])
+DOMAIN_WHITELIST = frozenset(getattr(settings, 'OIDC_DOMAIN_WHITELIST', None) or [])
 WELL_KNOWN_SCHEME = "/.well-known/openid-configuration"
 ERR_INVALID_RESPONSE = 'Unable to fetch user information from provider.  Please check the log.'
+ERR_INVALID_DOMAIN = 'The domain for your email account (%s) is not allowed to authenticate with this provider.'
 ISSUER = None
+
 
 DATA_VERSION = '1'
 
